@@ -1,15 +1,6 @@
-import { ClipLoader, FadeLoader } from "react-spinners";
-import { CSSProperties } from "react";
-
-import css from "./Loader.module.css";
+import { FadeLoader } from "react-spinners";
 
 export default function Loader() {
-  const override = {
-    display: "block",
-    margin: "0 auto",
-    borderColor: "red",
-  };
-
   return (
     <>
       <FadeLoader

@@ -1,6 +1,3 @@
-import css from "./App.module.css";
-import axios from "axios";
-
 import { useEffect, useState } from "react";
 import { fetchData } from "../../unsplash-api";
 
@@ -11,8 +8,17 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
+export type ImageType = {
+  id: string;
+  urls: {
+    full: string;
+    small: string;
+  };
+  alt_description: string;
+};
+
 export default function App() {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<ImageType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -23,7 +29,7 @@ export default function App() {
   const [modalImageUrl, setModalImageUrl] = useState("");
   const [modalAlt, setModalAlt] = useState("");
 
-  const openModal = (url, alt) => {
+  const openModal = (url: string, alt: string) => {
     setModalImageUrl(url);
     setModalAlt(alt);
     setIsModalOpen(true);
@@ -33,7 +39,7 @@ export default function App() {
     setIsModalOpen(false);
   };
 
-  const handleSearch = async (newImage) => {
+  const handleSearch = async (newImage: string) => {
     setInput(newImage);
     setCurrentPage(1);
     setImages([]);

@@ -1,11 +1,17 @@
 import css from "./ImageCard.module.css";
+import { type ImageType } from "../App/App";
 
-export default function ImageCard({ data, onClick }) {
+export type Props = {
+  data: ImageType;
+  onClick: () => void;
+};
+
+export default function ImageCard({ data, onClick }: Props) {
   return (
     <>
       <img
         src={data.urls.small}
-        alt={data.ald_description}
+        alt={data.alt_description}
         onClick={onClick}
         className={css.img}
       />

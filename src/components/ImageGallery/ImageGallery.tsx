@@ -1,15 +1,21 @@
 import css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
+import { type ImageType } from "../App/App";
 
-export default function ImageGallery({ data, onClick }) {
+export type Props = {
+  data: ImageType[];
+  onClick: (url: string, alt: string) => void;
+};
+
+export default function ImageGallery({ data, onClick }: Props) {
   return (
     <ul className={css.list}>
-      {data.map((data) => (
-        <li key={data.id} className={css.item}>
+      {data.map((image) => (
+        <li key={image.id} className={css.item}>
           <ImageCard
-            data={data}
+            data={image}
             onClick={() => {
-              onClick(data.urls.full, data.alt_description);
+              onClick(image.urls.full, image.alt_description);
             }}
           />
         </li>
