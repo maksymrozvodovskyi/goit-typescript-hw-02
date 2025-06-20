@@ -7,45 +7,37 @@ import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
-
-export type ImageType = {
-  id: string;
-  urls: {
-    full: string;
-    small: string;
-  };
-  alt_description: string;
-};
+import { type ImageType } from "./App.types";
 
 export default function App() {
   const [images, setImages] = useState<ImageType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
-  const [input, setInput] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [input, setInput] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImageUrl, setModalImageUrl] = useState("");
-  const [modalAlt, setModalAlt] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalImageUrl, setModalImageUrl] = useState<string>("");
+  const [modalAlt, setModalAlt] = useState<string>("");
 
-  const openModal = (url: string, alt: string) => {
+  const openModal = (url: string, alt: string): void => {
     setModalImageUrl(url);
     setModalAlt(alt);
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsModalOpen(false);
   };
 
-  const handleSearch = async (newImage: string) => {
+  const handleSearch = async (newImage: string): Promise<void> => {
     setInput(newImage);
     setCurrentPage(1);
     setImages([]);
   };
 
-  const incrementPage = () => {
+  const incrementPage = (): void => {
     setCurrentPage(currentPage + 1);
   };
 
@@ -54,7 +46,7 @@ export default function App() {
       return;
     }
 
-    async function fetchImages() {
+    async function fetchImages(): Promise<void> {
       try {
         setIsError(false);
         setIsLoading(true);

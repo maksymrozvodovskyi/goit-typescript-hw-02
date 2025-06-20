@@ -1,9 +1,6 @@
 import css from "./SearchBar.module.css";
 import toast, { Toaster } from "react-hot-toast";
-
-type Props = {
-  onSubmit: (value: string) => void;
-};
+import { type Props } from "./SearchBar.types";
 
 export default function SearchBar({ onSubmit }: Props) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
